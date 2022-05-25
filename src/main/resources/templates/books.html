@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Books Catalogue System</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">Books Catalogue System</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+</nav>
+
+	<div class ="container">
+		<div class = "row">
+			<h1> List of Books</h1>
+		</div>
+		
+		<div class = "row">
+			<div class = "col-lg-3">
+				<a th:href = "@{/books/new}" class = "btn btn-primary btn-sm mb-3"> Add Books</a>
+			</div>
+		</div>
+		<table class = "table table-striped table-bordered">
+			<thead class = "table-dark">
+				<tr>
+					<th> Book Name</th>
+					<th> ISBN Numner</th>
+					<th> Publish date </th>
+					<th> Price(ZAR)</th>
+					<th> Type</th>
+					<th> Actions </th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr th:each = "bookObject: ${books}">
+					<td th:text = "${bookObject.bookName}"></td>
+					<td th:text = "${bookObject.isbnNumber}"></td>
+					<td th:text = "${bookObject.publishDate}"></td>
+					<td th:text = "${bookObject.price}"></td>
+					<td th:text = "${bookObject.type}"></td>
+					<td>
+						<a th:href = "@{/books/edit/{id}(id=${bookObject.id})}"
+						 class = "btn btn-primary">Update</a>
+						
+						<a th:href = "@{/books/{id}(id=${bookObject.id})}"
+						 class = "btn btn-danger">Delete</a>
+						 
+					</td>
+				</tr>
+			</tbody>
+		
+		</table>
+		
+	</div>
+</body>
+</html>
